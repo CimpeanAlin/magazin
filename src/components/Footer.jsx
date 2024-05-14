@@ -85,9 +85,8 @@ const Footer = () => {
       <Left>
         <Logo>Magazin hand-made</Logo>
         <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+        Descoperiți frumusețea în fiecare detaliu la Hand-Made Boutique - magazinul online pentru produse handmade de înaltă calitate. 
+        Bucurați-vă de experiența de cumpărături unică și transformați fiecare achiziție într-o poveste de neuitat.
         </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -107,31 +106,29 @@ const Footer = () => {
       <Center>
         <Title>Useful Links</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
+          <ListItem>Acasă</ListItem>
+          <ListItem>Noutăți</ListItem>
           <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
+          <ListItem>Promoții</ListItem>
+          <ListItem>Comenzi și Returnări</ListItem>
+          <ListItem>Termeni și condiții</ListItem>
+          <ListItem>Politica de confidențialitate</ListItem>
+          <ListItem>Cookies</ListItem>
+          <ListItem>A.N.P.C</ListItem>
         </List>
       </Center>
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{ marginRight: "10px" }} /> 622 Dixie Path , South
-          Tobinchester 98336
+          <Room style={{ marginRight: "10px" }} /> Cluj-Napoca, Județul Cluj
         </ContactItem>
         <ContactItem>
-          <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
+          <Phone style={{ marginRight: "10px" }} /> 0040 789 564 123
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{ marginRight: "10px" }} /> contact@lama.dev
+          <MailOutline style={{ marginRight: "10px" }} /> handmadeboutique@contact.ro
         </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
+        <ContactItem> Plata cu cardul</ContactItem>
       </Right>
     </Container>
   );
