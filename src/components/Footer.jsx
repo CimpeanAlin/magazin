@@ -6,6 +6,7 @@ import {
   Pinterest,
   Room,
   Twitter,
+  Paid,
 } from "@mui/icons-material";
 import styled from "styled-components";
 
@@ -20,13 +21,20 @@ const Left = styled.div`
   padding: 20px;
 `;
 
-const Logo = styled.h1``;
+const Logo = styled.h1`
+align-self: center;
+color: #333;`;
 
 const Desc = styled.p`
-  margin: 20px 0px;
+  margin: 20px 20px;
+  font-size: 15px;
+  align-self: center;
+  color: #333;
+  font-weight: 500;
 `;
 
 const SocialContainer = styled.div`
+align-self: center;
   display: flex;
 `;
 
@@ -83,11 +91,10 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>Magazin hand-made</Logo>
+        <Logo>Hand-Made Boutique</Logo>
         <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+          Descoperiți frumusețea în fiecare detaliu la Hand-Made Boutique - magazinul online pentru produse handmade de înaltă calitate. 
+        Bucurați-vă de experiența de cumpărături unică și transformați fiecare achiziție într-o poveste de neuitat.
         </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -107,31 +114,32 @@ const Footer = () => {
       <Center>
         <Title>Useful Links</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
+          <ListItem>Acasă</ListItem>
+          <ListItem>Noutăți</ListItem>
           <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
+          <ListItem>Promoții</ListItem>
+          <ListItem>Blog</ListItem>
+          <ListItem>Comenzi și Returnări</ListItem>
+          <ListItem>Termeni și condiții</ListItem>
+          <ListItem>Politica de confidențialitate</ListItem>
+          <ListItem>Cookies</ListItem>
+          <ListItem>A.N.P.C</ListItem>
         </List>
       </Center>
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{ marginRight: "10px" }} /> 622 Dixie Path , South
-          Tobinchester 98336
+          <Room style={{ marginRight: "10px" }} /> Cluj-Napoca, Județul Cluj
         </ContactItem>
         <ContactItem>
-          <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
+          <Phone style={{ marginRight: "10px" }} /> 0040 789 564 123
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{ marginRight: "10px" }} /> contact@lama.dev
+          <MailOutline style={{ marginRight: "10px" }} /> handmadeboutique@contact.ro
         </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
+        <ContactItem> 
+         <Paid style={{ marginRight: "10px" }} /> Plata Cash
+        </ContactItem>
       </Right>
     </Container>
   );

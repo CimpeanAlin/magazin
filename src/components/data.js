@@ -1,3 +1,10 @@
+export const hero = [
+  {
+  id:1,
+  img: "src\annie-spratt-TywjkDHf0Ps-unsplash.jpg",
+  },
+];
+
 export const categories = [
   {
     id: 1,

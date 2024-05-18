@@ -6,7 +6,12 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Container = styled.div`
-  height: 60px;
+  margin: 0 auto;
+  height: 180px;
+  display: flex;
+  padding: 12px 24px;
+  align-item: space-between;
+  background-color: #12497Dff;
 `;
 
 const Wrapper = styled.div`
@@ -14,10 +19,11 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap:630px;
 `;
 
 const Left = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
 `;
@@ -30,34 +36,39 @@ const Language = styled.span`
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
-  align-items: center;
-  margin-left: 25px;
+  align-items: right;
+  margin-left: 50px;
   padding: 5px;
+
 `;
 
 const Input = styled.input`
   border: none;
+  color: #C0B2A9ff;
 `;
 
-const Center = styled.div`
-  flex: 1;
-  text-align: center;
-`;
 
-const Logo = styled.h1`
-  font-weight: bold;
+const Logo = styled.div`
+margin left:25px;
+text-decoration:none;
+  font-size:36px;
+  color:#C0B2A9ff;
+  font-weight: 700;
 `;
 const Right = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  
 `;
 
 const MenuItem = styled.div`
-  font-size: 14px;
+  font-size: 18px;
   cursor: pointer;
   margin-left: 25px;
+  align-items: right;
+  color: #C0B2A9ff;
 `;
 
 const Navbar = () => {
@@ -67,16 +78,15 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <NavLink to="/">
-            <Logo>Magazin Hand-Made</Logo>
-          </NavLink>
+            <Logo>Hand-Made Boutique</Logo>
+            </NavLink>
         </Left>
-        <Center>
-          <SearchContainer>
+       
+        <Right>
+        <SearchContainer>
             <Input></Input>
             <Search></Search>
           </SearchContainer>
-        </Center>
-        <Right>
           <MenuItem>
             <NavLink to="/register">Register</NavLink>
           </MenuItem>
