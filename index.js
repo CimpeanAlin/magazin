@@ -1,19 +1,30 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const userRoute = require("./routes/users")
+const cors = require("cors");
+
+const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
+const productRoute = require("./routes/product");
+//const cartRoute = require("./routes/cart");
+//const orderRoute = require("./routes/order");
 
 mongoose
-  .connect(
-    "mongodb+srv://alincimpean6:tU33fRfpRwHiGBfz@cluster0.kmomjra.mongodb.net/magazin?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect("mongodb+srv://alincimpean6:tU33fRfpRwHiGBfz@cluster0.kmomjra.mongodb.net/magazin?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => console.log("DB Connection Successfull!"))
   .catch((err) => {
     console.log(err);
   });
 
-app.use("/magazinapi/users", userRoute);
+app.use(cors());
+app.use(express.json());
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
+//app.use("/api/carts", cartRoute);
+//app.use("/api/orders", orderRoute);
+//app.use("/api/checkout", stripeRoute);
 
 app.listen(5000, () => {
-    console.log("Backend server is running!");
+  console.log("Backend server is running!");
 });
