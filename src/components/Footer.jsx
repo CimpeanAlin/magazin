@@ -6,6 +6,7 @@ import {
   Pinterest,
   Room,
   Twitter,
+  Paid,
 } from "@mui/icons-material";
 import styled from "styled-components";
 
@@ -20,13 +21,20 @@ const Left = styled.div`
   padding: 20px;
 `;
 
-const Logo = styled.h1``;
+const Logo = styled.h1`
+align-self: center;
+color: #333;`;
 
 const Desc = styled.p`
-  margin: 20px 0px;
+  margin: 20px 20px;
+  font-size: 15px;
+  align-self: center;
+  color: #333;
+  font-weight: 500;
 `;
 
 const SocialContainer = styled.div`
+align-self: center;
   display: flex;
 `;
 
@@ -83,9 +91,9 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>Magazin hand-made</Logo>
+        <Logo>Hand-Made Boutique</Logo>
         <Desc>
-        Descoperiți frumusețea în fiecare detaliu la Hand-Made Boutique - magazinul online pentru produse handmade de înaltă calitate. 
+          Descoperiți frumusețea în fiecare detaliu la Hand-Made Boutique - magazinul online pentru produse handmade de înaltă calitate. 
         Bucurați-vă de experiența de cumpărături unică și transformați fiecare achiziție într-o poveste de neuitat.
         </Desc>
         <SocialContainer>
@@ -110,6 +118,7 @@ const Footer = () => {
           <ListItem>Noutăți</ListItem>
           <ListItem>Wishlist</ListItem>
           <ListItem>Promoții</ListItem>
+          <ListItem>Blog</ListItem>
           <ListItem>Comenzi și Returnări</ListItem>
           <ListItem>Termeni și condiții</ListItem>
           <ListItem>Politica de confidențialitate</ListItem>
@@ -128,7 +137,9 @@ const Footer = () => {
         <ContactItem>
           <MailOutline style={{ marginRight: "10px" }} /> handmadeboutique@contact.ro
         </ContactItem>
-        <ContactItem> Plata cu cardul</ContactItem>
+        <ContactItem> 
+         <Paid style={{ marginRight: "10px" }} /> Plata Cash
+        </ContactItem>
       </Right>
     </Container>
   );
