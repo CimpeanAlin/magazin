@@ -162,17 +162,17 @@ const Cart = () => {
           <Info>
             <Product>
               <ProductDetail>
-                <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
+                <Image src="https://www.bestcadouri.ro/images_cache/w320h320/8/9/9/16626f9f339d519c7129e0c5ac258b5c.jpg" />
                 <Details>
                   <ProductName>
-                    <b>Product:</b> JESSIE THUNDER SHOES
+                    <b>Product:</b> Lumanare
                   </ProductName>
                   <ProductId>
                     <b>ID:</b> 93813718293
                   </ProductId>
                   <ProductColor color="black" />
                   <ProductSize>
-                    <b>Size:</b> 37.5
+                    <b>Size:</b> mare
                   </ProductSize>
                 </Details>
               </ProductDetail>
@@ -188,10 +188,10 @@ const Cart = () => {
             <Hr />
             <Product>
               <ProductDetail>
-                <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
+                <Image src="https://i.pinimg.com/originalhttps://c02.purpledshub.com/uploads/sites/51/2022/06/diy-t-shirt-printing-step-4-d8d9a2a.jpgs/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
                 <Details>
                   <ProductName>
-                    <b>Product:</b> HAKURA T-SHIRT
+                    <b>Product:</b> Tricou Handmade
                   </ProductName>
                   <ProductId>
                     <b>ID:</b> 93813718293
