@@ -1,5 +1,8 @@
-
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { login } from "../redux/apiCall";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -22,7 +25,7 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 
-const Title = styled.h1`
+const Title = styled.header`
   font-size: 24px;
   font-weight: 300;
 `;
@@ -47,6 +50,10 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+
+  &:hover {
+    background-color: #d2a768;
+  }
 `;
 
 const Link = styled.a`
@@ -56,17 +63,62 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
+const Error = styled.span`
+  color: red;
+`;
+
+const Success = styled.span`
+  color: green;
+`;
+
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching, error, success, currentUser } = useSelector(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    if (currentUser) {
+      window.location.href = "/dashboard";
+    }
+  }, [currentUser]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+    console.log("Login successful");
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <label htmlFor="username">Username</label>
+          <Input
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label htmlFor="password">Password</label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button onClick={handleClick} disabled={isFetching}>
+            {isFetching ? "Logging in..." : "LOGIN"}
+          </Button>
+          {error && <Error>{error.message}</Error>}
+          {success && <Success>Login successful!</Success>}
+          <Link>Forgot your password?</Link>
+          <Link>Create a new account</Link>
         </Form>
       </Wrapper>
     </Container>
