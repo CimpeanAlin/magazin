@@ -11,7 +11,11 @@ import {
 import styled from "styled-components";
 
 const Container = styled.div`
-  display: flex;
+max-width: 1300px;
+margin: 0 auto;
+padding: 0 32px;
+display: flex;
+align-items: center;
 `;
 
 const Left = styled.div`
