@@ -97,19 +97,20 @@ const Products = ({ cat, filters, sort }) => {
     }
   }, [sort]);
 
+
+
   return (
-    <PageContainer>
-      <SectionTitle>Produse recomandate</SectionTitle>
+  <PageContainer>
+    <SectionTitle>Produse recomandate</SectionTitle>
       <GridContainer>
-        {popularProducts.map(item => (
-          <ProductCard key={item.id}>
-            <ProductImage src={item.img} alt={item.title} />
-            <ProductTitle>{item.title}</ProductTitle>
-          </ProductCard>
-        ))}
-      </GridContainer>
-    </PageContainer>
-  );
+    {cat
+      ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+      : products
+          .slice(0, 8)
+          .map((item) => <Product item={item} key={item.id} />)}
+    </GridContainer>
+  </PageContainer>
+);
 };
 
 export default Products;

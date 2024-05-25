@@ -72,11 +72,12 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
+
   return (
     <Container>
       <Wrapper>
         <Left>
-          <NavLink to="/" style={{ textDecoration: 'none' }}>
+          <NavLink to="/" style={{ textDecoration: "none" }}>
             <Logo>Hand-Made Boutique</Logo>
           </NavLink>
         </Left>
@@ -86,25 +87,35 @@ const Navbar = () => {
             <Search />
           </SearchContainer>
           <MenuItem>
-            <NavLink to="/register" style={{ textDecoration: 'none', color: '#C0B2A9' }}>Register</NavLink>
+            <NavLink
+              to="/register"
+              style={{ textDecoration: "none", color: "#C0B2A9" }}
+            >
+              Register
+            </NavLink>
           </MenuItem>
-  
           <MenuItem>
-            <NavLink to="/login" style={{ textDecoration: 'none', color: '#C0B2A9' }}>Login</NavLink>
+            <NavLink
+              to="/login"
+              style={{ textDecoration: "none", color: "#C0B2A9" }}
+            >
+              Login
+            </NavLink>
           </MenuItem>
-
           <MenuItem>
-            <NavLink to="/register" style={{ textDecoration: 'none', color: '#C0B2A9' }}>Blog</NavLink>
+            <NavLink
+              to="/blog"
+              style={{ textDecoration: "none", color: "#C0B2A9" }}
+            >
+              Blog
+            </NavLink>
           </MenuItem>
-
           <MenuItem>
-
-            <NavLink to="/cart" style={{ textDecoration: 'none', color: '#C0B2A9' }}>
-              <Badge badgeContent={4} color="primary">
-
-            <NavLink to="/cart" style={{ textDecoration: 'none', color: '#C0B2A9' }}>
+            <NavLink
+              to="/cart"
+              style={{ textDecoration: "none", color: "#C0B2A9" }}
+            >
               <Badge badgeContent={quantity} color="primary">
-
                 <ShoppingCartOutlined />
               </Badge>
             </NavLink>
