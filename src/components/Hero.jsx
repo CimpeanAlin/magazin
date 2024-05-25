@@ -68,6 +68,24 @@ const CategoriesText = styled.h2`
   
 `;
 
+const Button = styled.button`
+  border: none;
+  padding: 8px;
+  background-color: #17282Fff;;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color:#0D1E25ff;
+    color: #F5F5F5ff;
+  }
+`;
+
+
+
 const Hero = () => {
   return (
     <>
@@ -75,8 +93,10 @@ const Hero = () => {
         <HeroContainerText>
           <HeroText>Welcome to Hand-Made Boutique</HeroText>
           <HeroDescription>
-            Discover unique and beautiful handmade items crafted with love.
+          Bucurați-vă de o colecție unică de produse hand made create cu pasiune și atenție la detalii.
+           Fiecare piesă spune o poveste și va adauga un strop de magie în viața dumneavoastră.
           </HeroDescription>
+          <Button>Toate Produsele</Button>
         </HeroContainerText>
         <HeroImage src="/photo/mainphoto.png" />
       </HeroSection>

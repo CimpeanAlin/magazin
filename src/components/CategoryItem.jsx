@@ -1,20 +1,22 @@
 import React from 'react'
 import styled from 'styled-components';
 
+
 const CategorySection = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  
+  gap: 20px;
   align-items: center;
   background-color: hsla(23, 15%, 88%, 1);
 `;
 
 const Container = styled.div`
-  flex: 1;
-  height: 400px;
+  position: relative;
+  width: 100%;
+  height: 300px;  // setăm o înălțime fixă pentru consistență
   border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -24,6 +26,7 @@ const Container = styled.div`
     transform: scale(1.05);
   }
 `;
+
 const Image = styled.img`
   width: 100%;
   height: 100%;

@@ -9,18 +9,18 @@ export const hero = [
 export const categories = [
   {
     id: 1,
-    img: "https://images.wall-art.de/format:webp/q:92/rs:fit:1560:/_img/out/pictures/master/product/1/wanddeko-holz-pappel-furnier-hirsch-im-wald-web-01.jpg",
-    title: "Lemn",
+    img: "/photo/mainphoto1.png",
+    title: "Bijuterii",
   },
   {
     id: 2,
-    img: "https://i.pinimg.com/236x/15/5f/6d/155f6d81537b423f1b9b3a47768d76fe.jpg",
-    title: "Metal",
+    img: "/photo/mainphoto3.png",
+    title: "Lumânări",
   },
   {
     id: 3,
-    img: "https://i.pinimg.com/564x/32/5d/21/325d2186de453e89598b1db1dc3fa889.jpg",
-    title: "Sticla",
+    img: "/photo/mainphoto2.png",
+    title: "Produse de Îngrijire",
   },
 ];
 
