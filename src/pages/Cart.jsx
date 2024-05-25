@@ -2,6 +2,14 @@ import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  increaseProductQuantity,
+  decreaseProductQuantity,
+} from "../redux/cartRedux";
+import { useState } from "react";
+import AddressDialog from "../components/AddressDialog";
+
 
 const Container = styled.div``;
 
@@ -31,8 +39,7 @@ const TopButton = styled.button`
   color: ${(props) => props.type === "filled" && "white"};
 `;
 
-const TopTexts = styled.div`
-`;
+const TopTexts = styled.div``;
 const TopText = styled.span`
   text-decoration: underline;
   cursor: pointer;
@@ -145,6 +152,62 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  //const currentUser = useSelector((state) => state.auth.user);
+
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
+  const handleAddQuantity = (productId) => {
+    dispatch(increaseProductQuantity(productId));
+  };
+
+  const handleRemoveQuantity = (productId) => {
+    dispatch(decreaseProductQuantity(productId));
+  };
+
+  const handleCheckout = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
+  const handleDialogSubmit = async ({ address, phone, userId }) => {
+    const orderData = {
+      userId: "123",
+      products: cart.products.map((product) => ({
+        productId: product._id,
+        quantity: product.quantity,
+      })),
+      amount: cart.total,
+      address,
+      phone,
+      status: "pending",
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"), // Assuming token is stored in localStorage
+        },
+        body: JSON.stringify(orderData),
+      });
+      if (response.ok) {
+        setDialogOpen(false);
+        //history.push("/order-success"); // Replace with your success page route
+      } else {
+        console.error("Order submission failed", await response.json());
+      }
+    } catch (error) {
+      console.error("Order submission error", error);
+    }
+  };
+
+
   return (
     <Container>
       <Navbar />
@@ -153,70 +216,51 @@ const Cart = () => {
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({cart.products.length})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton type="filled" onClick={handleCheckout}>
+            CHECKOUT NOW
+          </TopButton>
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://www.bestcadouri.ro/images_cache/w320h320/8/9/9/16626f9f339d519c7129e0c5ac258b5c.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Lumanare
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> mare
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {cart.products.map((product) => (
+              <Product key={product._id}>
+                <ProductDetail>
+                  <Image src={product.img} />
+                  <Details>
+                    <ProductName>
+                      <b>Product:</b> {product.title}
+                    </ProductName>
+                    <ProductId>
+                      <b>ID:</b> {product._id}
+                    </ProductId>
+                    <ProductColor color={product.color} />
+                    <ProductSize>
+                      <b>Size:</b> {product.size}
+                    </ProductSize>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductAmountContainer>
+                    <Add onClick={() => handleAddQuantity(product._id)} />
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <Remove onClick={() => handleRemoveQuantity(product._id)} />
+                  </ProductAmountContainer>
+                  <ProductPrice>
+                    $ {product.price * product.quantity}
+                  </ProductPrice>
+                </PriceDetail>
+              </Product>
+            ))}
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://i.pinimg.com/originalhttps://c02.purpledshub.com/uploads/sites/51/2022/06/diy-t-shirt-printing-step-4-d8d9a2a.jpgs/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> Tricou Handmade
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="gray" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 20</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -228,13 +272,19 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
           </Summary>
         </Bottom>
       </Wrapper>
       <Footer />
+      <AddressDialog
+        isOpen={isDialogOpen}
+        onClose={handleDialogClose}
+        onSubmit={(data) =>
+          handleDialogSubmit({ ...data })
+        }
+      />
     </Container>
   );
 };
