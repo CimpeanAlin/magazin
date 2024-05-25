@@ -43,7 +43,7 @@ const ProductImage = styled.img`
 const ProductTitle = styled.p`
   font-size: 16px;
   color: #333333;
-  margin-top: 10px;
+  margin-top: 10px`;
 
 const Container = styled.div`
   padding: 20px;
