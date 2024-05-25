@@ -1,7 +1,8 @@
 export const hero = [
   {
-  id:1,
-  img: "src\annie-spratt-TywjkDHf0Ps-unsplash.jpg",
+    id: 1,
+    img: "public/photo/img.png",
+    title: "Hero",
   },
 ];
 
@@ -44,8 +45,5 @@ export const popularProducts = [
     id: 5,
     img: "https://cloud2.bcdn.ro/Uploads/item/2024/05/06/12/17149974998121490-item.jpg?width=310&aspect_ratio=4:5&resize_mode=stretch&017149974998121490",
   },
-  {
-    id: 6,
-    img: "https://cloud2.bcdn.ro/Uploads/item/2020/03/30/14/15855801236053231-item.jpg?width=310&aspect_ratio=4:5&resize_mode=stretch&015855801236053231",
-  },
+  
 ];

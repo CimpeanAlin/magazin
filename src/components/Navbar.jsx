@@ -5,69 +5,68 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
+  max-width: 1300px;
+  height: 90px;
   margin: 0 auto;
-  height: 180px;
+  padding: 0 32px;
   display: flex;
-  padding: 12px 24px;
-  align-item: space-between;
-  background-color: #12497Dff;
+  align-items: center;
+  background-color: #12497D;
 `;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap:630px;
 `;
 
 const Left = styled.div`
-  flex: 2;
   display: flex;
   align-items: center;
 `;
 
-const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
+const Logo = styled.div`
+margin-left: 50px;
+  font-size: 24px;
+  color: #8B5E34;  
+  font-weight: 500;
+  text-decoration: none;
+  font-family: 'Great Vibes', cursive;  
+  letter-spacing: 1.5px;  
+  transition: color 0.3s ease;  
+
+  &:hover {
+    color: #6D4C41;  
 `;
 
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
-  align-items: right;
+  align-items: center;
   margin-left: 50px;
   padding: 5px;
-
 `;
 
 const Input = styled.input`
   border: none;
-  color: #C0B2A9ff;
+  color: #12497D;
+  &:focus {
+    outline: none;
+  }
 `;
 
-
-const Logo = styled.div`
-margin left:25px;
-text-decoration:none;
-  font-size:36px;
-  color:#C0B2A9ff;
-  font-weight: 700;
-`;
 const Right = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  
 `;
 
 const MenuItem = styled.div`
   font-size: 18px;
   cursor: pointer;
   margin-left: 25px;
-  align-items: right;
-  color: #C0B2A9ff;
+  color: #C0B2A9;
 `;
 
 const Navbar = () => {
@@ -75,24 +74,29 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          <NavLink to="/">
+          <NavLink to="/" style={{ textDecoration: 'none' }}>
             <Logo>Hand-Made Boutique</Logo>
-            </NavLink>
+          </NavLink>
         </Left>
-       
         <Right>
-        <SearchContainer>
-            <Input></Input>
-            <Search></Search>
+          <SearchContainer>
+            <Input placeholder="Search" />
+            <Search />
           </SearchContainer>
           <MenuItem>
-            <NavLink to="/register">Register</NavLink>
+            <NavLink to="/register" style={{ textDecoration: 'none', color: '#C0B2A9' }}>Register</NavLink>
           </MenuItem>
+  
           <MenuItem>
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/login" style={{ textDecoration: 'none', color: '#C0B2A9' }}>Login</NavLink>
           </MenuItem>
+
           <MenuItem>
-            <NavLink to="/cart">
+            <NavLink to="/register" style={{ textDecoration: 'none', color: '#C0B2A9' }}>Blog</NavLink>
+          </MenuItem>
+
+          <MenuItem>
+            <NavLink to="/cart" style={{ textDecoration: 'none', color: '#C0B2A9' }}>
               <Badge badgeContent={4} color="primary">
                 <ShoppingCartOutlined />
               </Badge>
