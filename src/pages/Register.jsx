@@ -1,4 +1,17 @@
 import styled from "styled-components";
+import { useState } from "react";
+import { register } from "../redux/apiCall";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  registerStart,
+  registerSuccess,
+  registerFailure,
+} from "../redux/userRedux";
+import React from "react";
+
+const Success = styled.span`
+  color: green;
+`;
 
 const Container = styled.div`
   width: 100vw;
@@ -53,22 +66,94 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const dispatch = useDispatch();
+  const { isFetching, error , success} = useSelector((state) => state.user);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(registerStart());
+
+    try {
+      await register(dispatch, formData); // Use the register function
+      console.log("Registration successful");
+
+      // Clear all input fields after successful registration
+      setFormData({
+        name: "",
+        lastName: "",
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      dispatch(registerFailure());
+      console.error("Registration failed:", error);
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
-          <Agreement>
-            By creating an account, I consent to the processing of my personal
-            data in accordance with the <b>PRIVACY POLICY</b>
-          </Agreement>
-          <Button>CREATE</Button>
+        <Form onSubmit={handleSubmit}>
+          <Input
+            name="name"
+            placeholder="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <Input
+            name="lastName"
+            placeholder="last name"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
+          <Input
+            name="username"
+            placeholder="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          <Input
+            name="email"
+            placeholder="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <Input
+            name="confirmPassword"
+            type="password"
+            placeholder="confirm password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
+          <Button type="submit" disabled={isFetching}>
+            {isFetching ? "Creating..." : "CREATE"}
+          </Button>
+          {success && <Success>Register successful!</Success>}
+          {error && <React.Fragment>Something went wrong...</React.Fragment>}
         </Form>
       </Wrapper>
     </Container>
