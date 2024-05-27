@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { login } from "../redux/apiCall";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -75,15 +75,16 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isFetching, error, success, currentUser } = useSelector(
     (state) => state.user
   );
 
   useEffect(() => {
     if (currentUser) {
-      window.location.href = "/dashboard";
+      navigate(`/dashboard/${currentUser._id}`);
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const handleClick = (e) => {
     e.preventDefault();
