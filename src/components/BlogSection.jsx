@@ -70,9 +70,10 @@ const BlogText = styled.p`
 `;
 
 const Button = styled.button`
-  border: none;
+  font-size:20px;
+border: none;
   padding: 8px;
-  background-color: #17282Fff;;
+  background-color: #33515Bff;
   color: #fff;
  margin-top:20px;
   cursor: pointer;
@@ -81,7 +82,7 @@ const Button = styled.button`
   transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
-    background-color:#0D1E25ff;
+    background-color:;
     color: #F5F5F5ff;
   }
 `;
@@ -118,7 +119,7 @@ const Blog = () => {
 
       <BlogRow>
       <BlogColumn>
-          <BlogImage src="/photo/mainphoto.png" alt="Blog 3" />
+          <BlogImage src="/photo/mainphoto6.png" alt="Blog 3" />
          
         </BlogColumn>
         <BlogColumn>

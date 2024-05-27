@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import { register } from "../redux/apiCall";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,8 +9,24 @@ import {
 } from "../redux/userRedux";
 import React from "react";
 
+const indigoDye = "#12497Dff";
+const charcoal = "#2B3F4Eff";
+const darkSlateGray = "#33515Bff";
+const silver = "#C0B2A9ff";
+const gunmetal = "#17282Fff";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const Success = styled.span`
   color: green;
+  animation: ${fadeIn} 0.5s ease-in-out;
 `;
 
 const Container = styled.div`
@@ -20,23 +36,29 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://img.freepik.com/free-photo/close-up-hand-making-heart-garland-with-spool-wrapped-gift-box-white-desk_23-2148137405.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1711929600&semt=ais")
-      center;
+    url("/photo/mainphoto7.png") center;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: ${fadeIn} 1s ease-in-out;
 `;
 
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
   background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  animation: ${fadeIn} 1s ease-in-out;
 `;
 
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
+  color: ${indigoDye};
+  text-align: center;
+  margin-bottom: 20px;
 `;
 
 const Form = styled.form`
@@ -49,20 +71,42 @@ const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  border: 1px solid ${charcoal};
+  border-radius: 5px;
+  &:focus {
+    border-color: ${indigoDye};
+    outline: none;
+  }
 `;
 
 const Agreement = styled.span`
   font-size: 12px;
   margin: 20px 0px;
+  color: ${darkSlateGray};
 `;
 
 const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: #deb887;
+  background-color: ${indigoDye};
   color: white;
   cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+  &:disabled {
+    background-color: ${silver};
+    cursor: not-allowed;
+  }
+  &:hover:enabled {
+    background-color: ${darkSlateGray};
+  }
+`;
+
+const Error = styled.span`
+  color: red;
+  animation: ${fadeIn} 0.5s ease-in-out;
 `;
 
 const Register = () => {
@@ -76,7 +120,7 @@ const Register = () => {
   });
 
   const dispatch = useDispatch();
-  const { isFetching, error , success} = useSelector((state) => state.user);
+  const { isFetching, error, success } = useSelector((state) => state.user);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -109,17 +153,17 @@ const Register = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>CREATE AN ACCOUNT</Title>
+        <Title>CREAZĂ CONT</Title>
         <Form onSubmit={handleSubmit}>
           <Input
             name="name"
-            placeholder="name"
+            placeholder="nume"
             value={formData.name}
             onChange={handleChange}
           />
           <Input
             name="lastName"
-            placeholder="last name"
+            placeholder="prenume"
             value={formData.lastName}
             onChange={handleChange}
           />
@@ -138,22 +182,22 @@ const Register = () => {
           <Input
             name="password"
             type="password"
-            placeholder="password"
+            placeholder="parola"
             value={formData.password}
             onChange={handleChange}
           />
           <Input
             name="confirmPassword"
             type="password"
-            placeholder="confirm password"
+            placeholder="confirmă parola"
             value={formData.confirmPassword}
             onChange={handleChange}
           />
           <Button type="submit" disabled={isFetching}>
-            {isFetching ? "Creating..." : "CREATE"}
+            {isFetching ? "Creating..." : "CREAZĂ"}
           </Button>
           {success && <Success>Register successful!</Success>}
-          {error && <React.Fragment>Something went wrong...</React.Fragment>}
+          {error && <Error>Something went wrong...</Error>}
         </Form>
       </Wrapper>
     </Container>

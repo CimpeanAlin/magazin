@@ -11,12 +11,11 @@ const PageContainer = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  max-width: 1400px;
+  max-width: 1500px;
   background-color: #C0B2A9;
   font-size: 32px;
   color: #12497D;
   margin-bottom: 10px;
-  
   text-align: left;
 `;
 
