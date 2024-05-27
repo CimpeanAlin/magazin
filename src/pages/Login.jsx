@@ -1,8 +1,28 @@
+import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
-import styled from "styled-components";
-import { login } from "../redux/apiCall";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { login } from "../redux/apiCall";
+import React from "react";
+
+const indigoDye = "#12497Dff";
+const charcoal = "#2B3F4Eff";
+const darkSlateGray = "#33515Bff";
+const silver = "#C0B2A9ff";
+const gunmetal = "#17282Fff";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const Success = styled.span`
+  color: green;
+  animation: ${fadeIn} 0.5s ease-in-out;
+`;
 
 const Container = styled.div`
   width: 100vw;
@@ -11,23 +31,29 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://img.freepik.com/free-photo/close-up-hand-making-heart-garland-with-spool-wrapped-gift-box-white-desk_23-2148137405.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1711929600&semt=ais")
-      center;
+    url("/photo/mainphoto7.png") center;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: ${fadeIn} 1s ease-in-out;
 `;
 
 const Wrapper = styled.div`
-  width: 25%;
+  width: 40%;
   padding: 20px;
   background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  animation: ${fadeIn} 1s ease-in-out;
 `;
 
-const Title = styled.header`
+const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
+  color: ${indigoDye};
+  text-align: center;
+  margin-bottom: 20px;
 `;
 
 const Form = styled.form`
@@ -40,19 +66,30 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
+  border: 1px solid ${charcoal};
+  border-radius: 5px;
+  &:focus {
+    border-color: ${indigoDye};
+    outline: none;
+  }
 `;
 
 const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: #deb887;
+  background-color: ${indigoDye};
   color: white;
   cursor: pointer;
-  margin-bottom: 10px;
-
-  &:hover {
-    background-color: #d2a768;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+  &:disabled {
+    background-color: ${silver};
+    cursor: not-allowed;
+  }
+  &:hover:enabled {
+    background-color: ${darkSlateGray};
   }
 `;
 
@@ -61,14 +98,12 @@ const Link = styled.a`
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
+  color: ${darkSlateGray};
 `;
 
 const Error = styled.span`
   color: red;
-`;
-
-const Success = styled.span`
-  color: green;
+  animation: ${fadeIn} 0.5s ease-in-out;
 `;
 
 const Login = () => {
@@ -100,7 +135,7 @@ const Login = () => {
           <Input
             id="username"
             type="text"
-            placeholder="Enter your username"
+            placeholder="Introduceți username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -108,7 +143,7 @@ const Login = () => {
           <Input
             id="password"
             type="password"
-            placeholder="Enter your password"
+            placeholder="Introceți parola"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -117,8 +152,8 @@ const Login = () => {
           </Button>
           {error && <Error>{error.message}</Error>}
           {success && <Success>Login successful!</Success>}
-          <Link>Forgot your password?</Link>
-          <Link>Create a new account</Link>
+          <Link>Ați uitat parola?</Link>
+          <Link>Creați un cont</Link>
         </Form>
       </Wrapper>
     </Container>
