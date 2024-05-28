@@ -118,7 +118,7 @@ const Login = () => {
 
   useEffect(() => {
     if (currentUser) {
-      navigate(`/dashboard/${currentUser._id}`);
+      navigate(`/`);
     }
   }, [currentUser, navigate]);
 

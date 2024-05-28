@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import Blog from "./pages/Blog";
+import SearchResults from "./pages/SearchResults";
 import { store } from "./redux/store";
 import "./App.css";
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/dashboard/:userId" element={<Dashboard />} />
           <Route path="/register" element={<Register />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </Router>
     </Provider>

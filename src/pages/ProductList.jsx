@@ -46,10 +46,17 @@ const ProductList = () => {
     });
   };
 
+  const categoryTitles = {
+    all: "Toate produsele",
+    lumanari: "Lumânări",
+    bijuterii: "Bijuterii",
+    ingrijire: "Produse de îngrijire",
+  };
+
   return (
     <Container>
       <Navbar />
-      <Title>{cat}</Title>
+      <Title>{categoryTitles[cat] || cat}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
@@ -78,7 +85,11 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products cat={cat} filters={filters} sort={sort} />
+      <Products
+        cat={cat === "all" ? null : cat}
+        filters={filters}
+        sort={sort}
+      />
       <Footer />
     </Container>
   );

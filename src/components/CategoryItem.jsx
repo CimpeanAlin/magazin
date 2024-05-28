@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 
@@ -81,16 +82,22 @@ const Button = styled.button`
 `;
 
 const CategoryItem = ({ item }) => {
+    const navigate = useNavigate();
+
+    const handleMoreClick = () => {
+      navigate(`/products/${item.category}`);
+    };
+
+  
   return (
-    
-   <CategorySection>
-   <Container>
-      <Image src={item.img} alt={item.title} />
-      <Info>
-        <Title>{item.title}</Title>
-        <Button>More</Button>
-      </Info>
-    </Container>
+    <CategorySection>
+      <Container>
+        <Image src={item.img} alt={item.title} />
+        <Info>
+          <Title>{item.title}</Title>
+          <Button onClick={handleMoreClick}>More</Button>
+        </Info>
+      </Container>
     </CategorySection>
   );
 };

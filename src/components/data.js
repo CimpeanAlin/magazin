@@ -11,16 +11,19 @@ export const categories = [
     id: 1,
     img: "/photo/mainphoto1.png",
     title: "Bijuterii",
+    category: "bijuterii",
   },
   {
     id: 2,
     img: "/photo/mainphoto3.png",
     title: "Lumânări",
+    category: "lumanari",
   },
   {
     id: 3,
     img: "/photo/mainphoto2.png",
     title: "Produse de Îngrijire",
+    category: "ingrijire",
   },
 ];
 

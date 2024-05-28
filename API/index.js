@@ -7,10 +7,12 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 //const cartRoute = require("./routes/cart");
-//const orderRoute = require("./routes/order");
+const orderRoute = require("./routes/order");
 
 mongoose
-  .connect("mongodb+srv://alincimpean6:tU33fRfpRwHiGBfz@cluster0.kmomjra.mongodb.net/magazin?retryWrites=true&w=majority&appName=Cluster0")
+  .connect(
+    "mongodb+srv://alincimpean6:tU33fRfpRwHiGBfz@cluster0.kmomjra.mongodb.net/magazin?retryWrites=true&w=majority&appName=Cluster0"
+  )
   .then(() => console.log("DB Connection Successfull!"))
   .catch((err) => {
     console.log(err);
@@ -21,6 +23,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
+app.use("/api/order", orderRoute);
 
 //app.use("/api/carts", cartRoute);
 //app.use("/api/orders", orderRoute);

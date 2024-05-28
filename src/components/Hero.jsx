@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 
 const HeroSection = styled.div`
@@ -10,7 +11,7 @@ const HeroSection = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 200px;
   align-items: center;
-  background-color: #C0B2A9;
+  background-color: #c0b2a9;
 `;
 
 const HeroContainerText = styled.div`
@@ -48,7 +49,7 @@ const HeroImage = styled.img`
 `;
 
 const CategoriesSection = styled.div`
-max-width: 1300px;
+  max-width: 1300px;
   height: 40px;
   margin: 0 auto;
   margin-top: 20px;
@@ -62,16 +63,14 @@ max-width: 1300px;
 
 const CategoriesText = styled.h2`
   font-size: 24px;
-  color: #33515Bff;
+  color: #33515bff;
   margin: 0;
-
-  
 `;
 
 const Button = styled.button`
   border: none;
   padding: 8px;
-  background-color: #17282Fff;;
+  background-color: #17282fff;
   color: #fff;
   cursor: pointer;
   font-weight: 600;
@@ -79,24 +78,29 @@ const Button = styled.button`
   transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
-    background-color:#0D1E25ff;
-    color: #F5F5F5ff;
+    background-color: #0d1e25ff;
+    color: #f5f5f5ff;
   }
 `;
 
-
-
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/products/all");
+  };
+
   return (
     <>
       <HeroSection>
         <HeroContainerText>
           <HeroText>Welcome to Hand-Made Boutique</HeroText>
           <HeroDescription>
-          Bucurați-vă de o colecție unică de produse hand made create cu pasiune și atenție la detalii.
-           Fiecare piesă spune o poveste și va adauga un strop de magie în viața dumneavoastră.
+            Bucurați-vă de o colecție unică de produse hand made create cu
+            pasiune și atenție la detalii. Fiecare piesă spune o poveste și va
+            adauga un strop de magie în viața dumneavoastră.
           </HeroDescription>
-          <Button>Toate Produsele</Button>
+          <Button onClick={handleNavigate}>Toate Produsele</Button>
         </HeroContainerText>
         <HeroImage src="/photo/mainphoto.png" />
       </HeroSection>

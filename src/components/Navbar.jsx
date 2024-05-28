@@ -1,9 +1,10 @@
 import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
   max-width: 1300px;
@@ -12,7 +13,7 @@ const Container = styled.div`
   padding: 0 32px;
   display: flex;
   align-items: center;
-  background-color: #12497D;
+  background-color: #12497d;
 `;
 
 const Wrapper = styled.div`
@@ -28,17 +29,18 @@ const Left = styled.div`
 `;
 
 const Logo = styled.div`
-margin-left: 50px;
+  margin-left: 50px;
   font-size: 24px;
-  color: #8B5E34;  
+  color: #8b5e34;
   font-weight: 500;
   text-decoration: none;
-  font-family: 'Great Vibes', cursive;  
-  letter-spacing: 1.5px;  
-  transition: color 0.3s ease;  
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 1.5px;
+  transition: color 0.3s ease;
 
   &:hover {
-    color: #6D4C41;  
+    color: #6d4c41;
+  }
 `;
 
 const SearchContainer = styled.div`
@@ -51,7 +53,7 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
-  color: #12497D;
+  color: #12497d;
   &:focus {
     outline: none;
   }
@@ -67,11 +69,27 @@ const MenuItem = styled.div`
   font-size: 18px;
   cursor: pointer;
   margin-left: 25px;
-  color: #C0B2A9;
+  color: #c0b2a9;
 `;
 
 const Navbar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
   const quantity = useSelector((state) => state.cart.quantity);
+  const user = useSelector((state) => state.user.currentUser);
+
+  const handleSearch = async (e) => {
+    if (e.key === "Enter") {
+      try {
+        const res = await publicRequest.get(
+          `/products/search?q=${searchQuery}`
+        );
+        navigate(`/search?q=${searchQuery}`, { state: { products: res.data } });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
 
   return (
     <Container>
@@ -83,29 +101,47 @@ const Navbar = () => {
         </Left>
         <Right>
           <SearchContainer>
-            <Input placeholder="Search" />
+            <Input
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
+            />
             <Search />
           </SearchContainer>
-          <MenuItem>
-            <NavLink
-              to="/register"
-              style={{ textDecoration: "none", color: "#C0B2A9" }}
-            >
-              Register
-            </NavLink>
-          </MenuItem>
-          <MenuItem>
-            <NavLink
-              to="/login"
-              style={{ textDecoration: "none", color: "#C0B2A9" }}
-            >
-              Login
-            </NavLink>
-          </MenuItem>
+          {!user ? (
+            <>
+              <MenuItem>
+                <NavLink
+                  to="/register"
+                  style={{ textDecoration: "none", color: "#c0b2a9" }}
+                >
+                  Register
+                </NavLink>
+              </MenuItem>
+              <MenuItem>
+                <NavLink
+                  to="/login"
+                  style={{ textDecoration: "none", color: "#c0b2a9" }}
+                >
+                  Login
+                </NavLink>
+              </MenuItem>
+            </>
+          ) : (
+            <MenuItem>
+              <NavLink
+                to={`/dashboard/${user._id}`}
+                style={{ textDecoration: "none", color: "#c0b2a9" }}
+              >
+                Dashboard
+              </NavLink>
+            </MenuItem>
+          )}
           <MenuItem>
             <NavLink
               to="/blog"
-              style={{ textDecoration: "none", color: "#C0B2A9" }}
+              style={{ textDecoration: "none", color: "#c0b2a9" }}
             >
               Blog
             </NavLink>
@@ -113,7 +149,7 @@ const Navbar = () => {
           <MenuItem>
             <NavLink
               to="/cart"
-              style={{ textDecoration: "none", color: "#C0B2A9" }}
+              style={{ textDecoration: "none", color: "#c0b2a9" }}
             >
               <Badge badgeContent={quantity} color="primary">
                 <ShoppingCartOutlined />

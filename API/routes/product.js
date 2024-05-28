@@ -1,14 +1,10 @@
 const Product = require("../models/Product");
-const {
-  verifyToken,
-  verifyTokenAndAuthorization,
-  verifyTokenAndAdmin,
-} = require("./verifyToken");
+const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } =
+  require("./verifyToken");
 
 const router = require("express").Router();
 
 //CREATE
-
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
   const newProduct = new Product(req.body);
 
@@ -75,6 +71,18 @@ router.get("/", async (req, res) => {
       products = await Product.find();
     }
 
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/search", async (req, res) => {
+  const query = req.query.q;
+  try {
+    const products = await Product.find({
+      title: { $regex: query, $options: "i" }, // Case-insensitive search
+    });
     res.status(200).json(products);
   } catch (err) {
     res.status(500).json(err);

@@ -9,7 +9,9 @@ import {
 } from "../redux/cartRedux";
 import { useState } from "react";
 import AddressDialog from "../components/AddressDialog";
-
+import { userRequest } from "../requestMethods";
+import Alert from "@mui/material/Alert";
+import { useNavigate } from "react-router";
 
 const Container = styled.div``;
 
@@ -154,9 +156,15 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  //const currentUser = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.currentUser);
+  const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
 
   const [isDialogOpen, setDialogOpen] = useState(false);
+
+  const handleShopping = () => {
+      navigate(`/products/all`);
+  };
 
   const handleAddQuantity = (productId) => {
     dispatch(increaseProductQuantity(productId));
@@ -174,39 +182,38 @@ const Cart = () => {
     setDialogOpen(false);
   };
 
-  const handleDialogSubmit = async ({ address, phone, userId }) => {
+  const handleDialogSubmit = async ({ address }) => {
     const orderData = {
-      userId: "123",
+      userId: user,
       products: cart.products.map((product) => ({
         productId: product._id,
         quantity: product.quantity,
       })),
       amount: cart.total,
-      address,
-      phone,
+      address: address,
       status: "pending",
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"), // Assuming token is stored in localStorage
-        },
-        body: JSON.stringify(orderData),
-      });
-      if (response.ok) {
-        setDialogOpen(false);
-        //history.push("/order-success"); // Replace with your success page route
-      } else {
-        console.error("Order submission failed", await response.json());
-      }
+      const submitOrder = async (orderData) => {
+        try {
+          const response = await userRequest.post("/order", orderData);
+          if (response.status === 200) {
+            setDialogOpen(false);
+            setIsSuccessAlertOpen(true);
+          } else {
+            console.error("Order submission failed", response.data);
+          }
+        } catch (error) {
+          console.error("Order submission error", error);
+        }
+      };
+
+      await submitOrder(orderData);
     } catch (error) {
-      console.error("Order submission error", error);
+      console.error("Error handling order submission", error);
     }
   };
-
 
   return (
     <Container>
@@ -214,7 +221,7 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <TopButton onClick={handleShopping}>Continue Shopping</TopButton>
           <TopTexts>
             <TopText>Shopping Bag({cart.products.length})</TopText>
             <TopText>Your Wishlist (0)</TopText>
@@ -257,22 +264,18 @@ const Cart = () => {
             <Hr />
           </Info>
           <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+            <SummaryTitle>ORDER</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>{cart.total} LEI</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemText>Cost livrare</SummaryItemText>
+              <SummaryItemPrice>0 LEI</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>{cart.total} LEI</SummaryItemPrice>
             </SummaryItem>
           </Summary>
         </Bottom>
@@ -282,9 +285,15 @@ const Cart = () => {
         isOpen={isDialogOpen}
         onClose={handleDialogClose}
         onSubmit={(data) =>
-          handleDialogSubmit({ ...data })
+          handleDialogSubmit({ ...data, address: data.address })
         }
       />
+
+      {isSuccessAlertOpen && (
+        <Alert severity="success" onClose={() => setIsSuccessAlertOpen(false)}>
+          Order submitted successfully!
+        </Alert>
+      )}
     </Container>
   );
 };
