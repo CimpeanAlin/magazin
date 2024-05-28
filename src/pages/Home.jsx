@@ -1,12 +1,11 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Categories from '../components/Categories';
-import Hero from '../components/Hero';
-import Products from '../components/Products';
-import BlogSection from '../components/BlogSection';
-import Footer from '../components/Footer';
-import AboutSection from '../components/AboutSection';
-
+import React from "react";
+import Navbar from "../components/Navbar";
+import Categories from "../components/Categories";
+import Hero from "../components/Hero";
+import FirstPageProducts from "../components/FirstPageProducts";
+import BlogSection from "../components/BlogSection";
+import Footer from "../components/Footer";
+import AboutSection from "../components/AboutSection";
 
 const Home = () => {
   return (
@@ -14,15 +13,12 @@ const Home = () => {
       <Navbar />
       <Hero />
       <Categories />
-      <Products />
+      <FirstPageProducts />
       <BlogSection />
       <AboutSection />
       <Footer />
     </div>
   );
-}
+};
 
-export default Home
-
-
-
+export default Home;

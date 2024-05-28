@@ -24,7 +24,33 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 `;
 
-const Products = ({ cat, filters, sort }) => {
+const ProductCard = styled.div`
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+`;
+
+const ProductImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+`;
+
+const ProductTitle = styled.p`
+  font-size: 16px;
+  color: #333333;
+  margin-top: 10px;
+`;
+
+const Container = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+const FirstPageProducts = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -37,15 +63,13 @@ const Products = ({ cat, filters, sort }) => {
             : "http://localhost:5000/api/products"
         );
         setProducts(res.data);
-      } catch (err) {
-        console.error(err);
-      }
+      } catch (err) {}
     };
     getProducts();
   }, [cat]);
 
   useEffect(() => {
-    if (cat) {
+    cat &&
       setFilteredProducts(
         products.filter((item) =>
           Object.entries(filters).every(([key, value]) =>
@@ -53,15 +77,12 @@ const Products = ({ cat, filters, sort }) => {
           )
         )
       );
-    } else {
-      setFilteredProducts(products);
-    }
   }, [products, cat, filters]);
 
   useEffect(() => {
     if (sort === "newest") {
       setFilteredProducts((prev) =>
-        [...prev].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
       );
     } else if (sort === "asc") {
       setFilteredProducts((prev) =>
@@ -78,7 +99,7 @@ const Products = ({ cat, filters, sort }) => {
     <PageContainer>
       <SectionTitle>Produse recomandate</SectionTitle>
       <GridContainer>
-        {filteredProducts.map((item) => (
+        {products.slice(0, 5).map((item) => (
           <Product item={item} key={item.id} />
         ))}
       </GridContainer>
@@ -86,4 +107,4 @@ const Products = ({ cat, filters, sort }) => {
   );
 };
 
-export default Products;
+export default FirstPageProducts;
