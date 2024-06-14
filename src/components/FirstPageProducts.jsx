@@ -4,9 +4,17 @@ import Product from "./Product";
 import axios from "axios";
 
 const PageContainer = styled.div`
-  max-width: 1350px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 32px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center; 
+  background-color: #e6ded5;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
 `;
 
 const SectionTitle = styled.h2`
@@ -19,9 +27,11 @@ const SectionTitle = styled.h2`
 `;
 
 const GridContainer = styled.div`
+  width: 100%; 
+  flex-grow: 1; 
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 `;
 
 const ProductCard = styled.div`
@@ -97,9 +107,8 @@ const FirstPageProducts = ({ cat, filters, sort }) => {
 
   return (
     <PageContainer>
-      <SectionTitle>Produse recomandate</SectionTitle>
       <GridContainer>
-        {products.slice(0, 5).map((item) => (
+        {products.slice(0, 4).map((item) => (
           <Product item={item} key={item.id} />
         ))}
       </GridContainer>

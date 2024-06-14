@@ -41,7 +41,7 @@ const HeroImage = styled.img`
   width: 100%;
   max-width: 500px;
   height: auto;
-  border-radius: 8px;
+  border-radius: 14px;
   @media (max-width: 768px) {
     max-width: 200px;
     margin: 0 auto;

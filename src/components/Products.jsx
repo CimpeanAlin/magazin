@@ -9,14 +9,7 @@ const PageContainer = styled.div`
   padding: 0 32px;
 `;
 
-const SectionTitle = styled.h2`
-  max-width: 1500px;
-  background-color: #c0b2a9;
-  font-size: 32px;
-  color: #12497d;
-  margin-bottom: 10px;
-  text-align: left;
-`;
+
 
 const GridContainer = styled.div`
   display: grid;
@@ -76,7 +69,7 @@ const Products = ({ cat, filters, sort }) => {
 
   return (
     <PageContainer>
-      <SectionTitle>Produse recomandate</SectionTitle>
+      
       <GridContainer>
         {filteredProducts.map((item) => (
           <Product item={item} key={item.id} />

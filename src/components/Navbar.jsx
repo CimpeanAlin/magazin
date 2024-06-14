@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
+  width:100vw;
   max-width: 1300px;
   height: 90px;
   margin: 0 auto;
@@ -91,12 +92,27 @@ const Navbar = () => {
     }
   };
 
+
+  const NavImage = styled.img`
+  width: 120%;
+  max-width: 210px;
+  padding: 20px;
+  height: auto;
+  border-radius: 38px;
+  margin-left: 24px;
+  @media (max-width: 768px) {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+`;
+
   return (
     <Container>
       <Wrapper>
         <Left>
           <NavLink to="/" style={{ textDecoration: "none" }}>
-            <Logo>Hand-Made Boutique</Logo>
+          <NavImage src="/photo/logo.png" />
+           
           </NavLink>
         </Left>
         <Right>

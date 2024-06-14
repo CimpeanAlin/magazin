@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import FirstPageProducts from "../components/FirstPageProducts";
 import BlogSection from "../components/BlogSection";
 import Footer from "../components/Footer";
+import ProduseRec from "../components/ProduseRec";
 import AboutSection from "../components/AboutSection";
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
       <Navbar />
       <Hero />
       <Categories />
+      <ProduseRec />
       <FirstPageProducts />
       <BlogSection />
       <AboutSection />
