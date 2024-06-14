@@ -41,6 +41,7 @@ const SearchResults = () => {
   const query = new URLSearchParams(location.search).get("q");
   const products = location.state?.products || [];
 
+  
   return (
     <Container>
       <Navbar />
