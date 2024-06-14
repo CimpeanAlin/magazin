@@ -1,10 +1,8 @@
-// AddressDialog.jsx
 import React, { useState } from "react";
 import styled from "styled-components";
 
 const indigoDye = "#12497D";
 const charcoal = "#2B3F4E";
-const silver = "#C0B2A9";
 const lightBackground = "#E6DED5";
 
 const DialogOverlay = styled.div`
@@ -56,8 +54,9 @@ const DialogButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: ${(props) => (props.primary ? "#12497D" : "#ccc")};
-  color: ${(props) => (props.primary ? "white" : "black")};
+  background-color: ${(props) =>
+    props.primary === "true" ? "#12497D" : "#ccc"};
+  color: ${(props) => (props.primary === "true" ? "white" : "black")};
 `;
 
 const AddressDialog = ({ isOpen, onClose, onSubmit }) => {
@@ -88,7 +87,7 @@ const AddressDialog = ({ isOpen, onClose, onSubmit }) => {
         />
         <DialogActions>
           <DialogButton onClick={onClose}>Cancel</DialogButton>
-          <DialogButton primary onClick={handleSubmit}>
+          <DialogButton primary="true" onClick={handleSubmit}>
             Ship
           </DialogButton>
         </DialogActions>

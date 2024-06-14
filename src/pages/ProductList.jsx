@@ -71,12 +71,6 @@ flex-wrap: wrap;
   justify-content: space-between;
 `;
 
-const Product = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-`;
-
 const ProductList = () => {
   const location = useLocation();
   const cat = location.pathname.split("/")[2];

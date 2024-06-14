@@ -5,8 +5,6 @@ import Navbar from "../components/Navbar";
 const indigoDye = "#12497Dff";
 const charcoal = "#2B3F4Eff";
 const darkSlateGray = "#33515Bff";
-const silver = "#C0B2A9ff";
-const gunmetal = "#17282Fff";
 const lightGray = "#f8f8f8";
 
 const fadeIn = keyframes`

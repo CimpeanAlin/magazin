@@ -7,57 +7,21 @@ const PageContainer = styled.div`
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 32px;
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   background-color: #e6ded5;
   margin-top: 10px;
   margin-bottom: 10px;
-  
-`;
-
-const SectionTitle = styled.h2`
-  max-width: 1500px;
-  background-color: #c0b2a9;
-  font-size: 32px;
-  color: #12497d;
-  margin-bottom: 10px;
-  text-align: left;
 `;
 
 const GridContainer = styled.div`
-  width: 100%; 
-  flex-grow: 1; 
+  width: 100%;
+  flex-grow: 1;
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-`;
-
-const ProductCard = styled.div`
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-`;
-
-const ProductImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-`;
-
-const ProductTitle = styled.p`
-  font-size: 16px;
-  color: #333333;
-  margin-top: 10px;
-`;
-
-const Container = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 `;
 
 const FirstPageProducts = ({ cat, filters, sort }) => {

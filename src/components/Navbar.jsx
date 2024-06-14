@@ -29,21 +29,6 @@ const Left = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.div`
-  margin-left: 50px;
-  font-size: 24px;
-  color: #8b5e34;
-  font-weight: 500;
-  text-decoration: none;
-  font-family: "Great Vibes", cursive;
-  letter-spacing: 1.5px;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #6d4c41;
-  }
-`;
-
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;

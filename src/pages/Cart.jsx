@@ -14,10 +14,7 @@ import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router";
 
 const indigoDye = "#12497Dff";
-const charcoal = "#2B3F4Eff";
 const darkSlateGray = "#33515Bff";
-const silver = "#C0B2A9ff";
-const gunmetal = "#17282Fff";
 
 
 const Container = styled.div`
@@ -186,22 +183,6 @@ const SummaryItem = styled.div`
 const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: ${indigoDye};
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${darkSlateGray};
-  }
-`;
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
