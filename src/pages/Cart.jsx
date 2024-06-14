@@ -13,15 +13,50 @@ import { userRequest } from "../requestMethods";
 import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router";
 
-const Container = styled.div``;
+const indigoDye = "#12497Dff";
+const charcoal = "#2B3F4Eff";
+const darkSlateGray = "#33515Bff";
+const silver = "#C0B2A9ff";
+const gunmetal = "#17282Fff";
 
-const Wrapper = styled.div`
-  padding: 20px;
+
+const Container = styled.div`
+margin: 0;
+padding: 0,
+  width: 100vw;
+  height: 150vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("/photo/mainphoto7.png") center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
 `;
 
+
+const Wrapper = styled.div`
+  width: 84%;
+  margin-top: 30px;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  
+  
+`;
+
+
 const Title = styled.h1`
+  font-size: 24px;
   font-weight: 300;
+  color: ${indigoDye};
   text-align: center;
+  margin-bottom: 20px;
 `;
 
 const Top = styled.div`
@@ -37,8 +72,14 @@ const TopButton = styled.button`
   cursor: pointer;
   border: ${(props) => props.type === "filled" && "none"};
   background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
+    props.type === "filled" ? indigoDye : "transparent"};
   color: ${(props) => props.type === "filled" && "white"};
+  border-radius: 5px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${darkSlateGray};
+  }
 `;
 
 const TopTexts = styled.div``;
@@ -60,6 +101,7 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 const ProductDetail = styled.div`
@@ -148,9 +190,17 @@ const SummaryItemPrice = styled.span``;
 const Button = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: black;
+  background-color: ${indigoDye};
   color: white;
   font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${darkSlateGray};
+  }
 `;
 
 const Cart = () => {
@@ -219,15 +269,15 @@ const Cart = () => {
     <Container>
       <Navbar />
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>COȘUL TĂU</Title>
         <Top>
-          <TopButton onClick={handleShopping}>Continue Shopping</TopButton>
+          <TopButton onClick={handleShopping}>Continuă Cumpărăturile</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag({cart.products.length})</TopText>
-            <TopText>Your Wishlist (0)</TopText>
+            <TopText>Coș de Cupăraturi({cart.products.length})</TopText>
+            <TopText>Lista de Dorințe (0)</TopText>
           </TopTexts>
           <TopButton type="filled" onClick={handleCheckout}>
-            CHECKOUT NOW
+            CHECKOUT 
           </TopButton>
         </Top>
         <Bottom>
@@ -264,7 +314,7 @@ const Cart = () => {
             <Hr />
           </Info>
           <Summary>
-            <SummaryTitle>ORDER</SummaryTitle>
+            <SummaryTitle>COMANDA</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
               <SummaryItemPrice>{cart.total} LEI</SummaryItemPrice>

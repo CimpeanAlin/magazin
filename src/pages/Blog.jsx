@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const indigoDye = "#12497Dff";
 const charcoal = "#2B3F4Eff";
@@ -18,8 +19,10 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
+margin: 0;
+padding: 0,
   width: 100vw;
-  min-height: 100vh;
+  height: 100%;
   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
@@ -27,16 +30,16 @@ const Container = styled.div`
     url("/photo/mainphoto7.png") center;
   background-size: cover;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: ${fadeIn} 1s ease-in-out;
-  flex-direction: column;
-  padding: 20px;
+  
 `;
-
 const Wrapper = styled.div`
-  width: 60%;
-  padding: 20px;
+width: 84%;
+margin-top: 30px;
+align-items: center;
+padding: 20px;
   background-color: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -46,7 +49,9 @@ const Wrapper = styled.div`
 
 const Article = styled.div`
   margin-bottom: 40px;
-  padding: 20px;
+  margin-left: 26px;
+  margin-right: 26px;
+  padding: 26px;
   background-color: ${lightGray};
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -84,6 +89,7 @@ const ArticleContent = styled.div`
 const Blog = () => {
   return (
     <Container>
+       <Navbar />
       <Wrapper>
         <Title>Blog</Title>
         

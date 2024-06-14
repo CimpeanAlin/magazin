@@ -2,6 +2,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const indigoDye = "#12497D";
+const charcoal = "#2B3F4E";
+const silver = "#C0B2A9";
+const lightBackground = "#E6DED5";
+
 const DialogOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -15,23 +20,29 @@ const DialogOverlay = styled.div`
 `;
 
 const Dialog = styled.div`
-  background: white;
+  background: ${lightBackground};
   padding: 20px;
   border-radius: 8px;
-  width: 400px;
+  width: 360px;
   max-width: 90%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const DialogTitle = styled.h2`
   margin-bottom: 20px;
+  color: ${indigoDye};
 `;
 
 const DialogInput = styled.input`
-  width: 100%;
+  width: 94%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid ${charcoal};
   border-radius: 4px;
+  &:focus {
+    border-color: ${indigoDye};
+    outline: none;
+  }
 `;
 
 const DialogActions = styled.div`
@@ -45,7 +56,7 @@ const DialogButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: ${(props) => (props.primary ? "#007bff" : "#ccc")};
+  background-color: ${(props) => (props.primary ? "#12497D" : "#ccc")};
   color: ${(props) => (props.primary ? "white" : "black")};
 `;
 
