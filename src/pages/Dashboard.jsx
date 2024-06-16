@@ -6,6 +6,7 @@ import { logout } from "../redux/userRedux";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { userRequest } from "../requestMethods";
+import ChangePasswordModal from "../components/ChangePasswordModal";
 
 const Container = styled.div`
   width: 100%;
@@ -93,6 +94,7 @@ const Dashboard = () => {
   const user = useSelector((state) => state.user.currentUser);
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -120,8 +122,11 @@ const Dashboard = () => {
   }, [userId]);
 
   const handlePasswordReset = () => {
-    // Implement password reset logic here
-    alert("Password reset logic to be implemented.");
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleLogout = () => {
@@ -134,6 +139,10 @@ const Dashboard = () => {
   const getProductTitleById = (productId) => {
     const product = products.find((product) => product._id === productId);
     return product ? product.title : "Unknown Product";
+  };
+
+  const handleAddProduct = () => {
+    navigate("/addproduct");
   };
 
   return (
@@ -150,6 +159,7 @@ const Dashboard = () => {
           </h3>
           <Button onClick={handlePasswordReset}>Reset Password</Button>
           <Button onClick={handleLogout}>Log Out</Button>
+          <Button onClick={handleAddProduct}>Add Product</Button>
         </UserDetails>
         <OrderList>
           <h2>Your Orders</h2>
@@ -174,6 +184,7 @@ const Dashboard = () => {
         </OrderList>
       </Wrapper>
       <Footer />
+      <ChangePasswordModal isOpen={isModalOpen} onClose={handleCloseModal} userId={userId} />
     </Container>
   );
 };

@@ -4,8 +4,11 @@ const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
+    console.log("Token received:", token);  // Log the token
+
     verify(token, "crypt", (err, user) => {
       if (err) {
+        console.log("Token validation error:", err);  // Log validation error
         return res.status(403).json("Token is not valid!");
       }
       req.user = user;
